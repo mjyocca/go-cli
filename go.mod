@@ -1,6 +1,8 @@
-module github.com/mjyocca/go-cli
+module example.com/go-cli
 
-go 1.21.4
+go 1.22.2
+
+require github.com/hashicorp/cli v1.1.6
 
 require (
 	github.com/Masterminds/goutils v1.1.1 // indirect
@@ -10,7 +12,6 @@ require (
 	github.com/bgentry/speakeasy v0.1.0 // indirect
 	github.com/fatih/color v1.16.0 // indirect
 	github.com/google/uuid v1.6.0 // indirect
-	github.com/hashicorp/cli v1.1.6 // indirect
 	github.com/hashicorp/errwrap v1.1.0 // indirect
 	github.com/hashicorp/go-multierror v1.1.1 // indirect
 	github.com/huandu/xstrings v1.4.0 // indirect
