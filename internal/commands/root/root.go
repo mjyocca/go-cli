@@ -11,7 +11,7 @@ func NewRootCmd() *cmd.Command {
 		Name:  "root",
 		Short: "<help-short>",
 		Long:  "<help-long>",
-		Execute: func(cmd *cmd.Command, args []string) error {
+		Execute: func(c *cmd.Command, args []string) error {
 			fmt.Println("hello world!")
 			return nil
 		},

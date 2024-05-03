@@ -18,8 +18,9 @@ func realMain() int {
 
 	// setup root command
 	rootCmd := root.NewRootCmd()
-	cmdMap := cmd.BuildCmdMap(rootCmd)
+	cmdMap := cmd.NewCmdFactory(rootCmd)
 
+	// setup hashicorp/cli cli
 	cliRunner := cli.CLI{
 		Args:     args,
 		Commands: cmdMap,
