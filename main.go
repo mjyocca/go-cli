@@ -1,6 +1,7 @@
 package main
 
 import (
+	"context"
 	"os"
 
 	"example.com/go-cli/internal/commands/root"
@@ -16,8 +17,12 @@ func main() {
 func realMain() int {
 	args := os.Args[1:]
 
+	// setup parent context
+	// TODO: handle os signals manually for cleanup
+	ctx := context.Background()
+
 	// setup root command
-	rootCmd := root.NewRootCmd()
+	rootCmd := root.NewRootCmd(ctx)
 	cmdMap := cmd.NewCmdFactory(rootCmd)
 
 	// setup hashicorp/cli cli
