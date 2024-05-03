@@ -1,11 +1,14 @@
 package cmd
 
 type Command struct {
-	Name  string
-	Short string
-	Long  string
-
+	// Primary name of the command
+	Name string
+	// Short description of the command
+	Synopsis string
+	// Included with --help
+	HelpText string
+	// Supported aliases as alternative entrypoint
 	Aliases []string
-
+	// Runs the commands primary logic
 	Execute func(c *Command, args []string) error
 }

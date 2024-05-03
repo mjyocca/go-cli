@@ -7,13 +7,14 @@ import (
 	"example.com/go-cli/internal/pkg/cmd"
 )
 
+// Root application command
 func NewRootCmd(ctx context.Context) *cmd.Command {
 	cmd := &cmd.Command{
-		Name:  "root",
-		Short: "<help-short>",
-		Long:  "<help-long>",
+		Name:     "root",
+		Synopsis: "<synopsis-placeholder>",
+		HelpText: "<help-text-placeholder>",
 		Execute: func(c *cmd.Command, args []string) error {
-			fmt.Println("Cmd.Execute(root)", args)
+			fmt.Println("root cmd executing with args:", args)
 			return nil
 		},
 	}

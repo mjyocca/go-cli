@@ -1,7 +1,7 @@
 package cmd
 
 // wraps cmd.Execute(...args) call
-func (cmd *Command) Run(args []string) int {
+func (cmd *Command) run(args []string) int {
 	if cmd.Execute == nil {
 		return 1
 	}

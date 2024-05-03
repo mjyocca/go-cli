@@ -1,24 +1,3 @@
+// Package cmd is an internal library that uses "hashicorp/cli", an updated fork of "mitchellh/cli", under the hood.
+// Provides basic instrumentation with syntax to modern go cli libraries.
 package cmd
-
-import "github.com/hashicorp/cli"
-
-func NewCmdFactory(cmd *Command) map[string]cli.CommandFactory {
-	m := map[string]cli.CommandFactory{}
-
-	// build alias slice to iterate over
-	aliases := []string{cmd.Name}
-	for _, alias := range cmd.Aliases {
-		aliases = append(aliases, alias)
-	}
-
-	// loop over name +aliases
-	for _, name := range aliases {
-		m[name] = func() (cli.Command, error) {
-			return &AdapterCmd{
-				cmd: cmd,
-			}, nil
-		}
-	}
-
-	return m
-}
