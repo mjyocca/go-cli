@@ -10,6 +10,8 @@ import (
 	cli "github.com/hashicorp/cli"
 )
 
+var Application = "go-cli"
+
 func main() {
 	os.Exit(realMain())
 }
@@ -32,6 +34,7 @@ func realMain() int {
 
 	// setup hashicorp/cli cli
 	cliRunner := cli.CLI{
+		Name:     Application,
 		Args:     args,
 		Commands: cmdMap,
 		Version:  version.GetVersion(),

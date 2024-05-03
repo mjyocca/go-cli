@@ -11,4 +11,10 @@ type Command struct {
 	Aliases []string
 	// Runs the commands primary logic
 	Execute func(c *Command, args []string) error
+	// descendent cmds that inherit from root
+	subcommands []*Command
+}
+
+func (c *Command) AddCommand(cmd *Command) {
+	c.subcommands = append(c.subcommands, cmd)
 }
