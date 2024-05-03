@@ -21,8 +21,13 @@ func realMain() int {
 	// TODO: handle os signals manually for cleanup
 	ctx := context.Background()
 
+	// setup cmd package context for global fields
+	cmdCtx := &cmd.Context{
+		ParentCtx: ctx,
+	}
+
 	// setup root command
-	rootCmd := root.NewRootCmd(ctx)
+	rootCmd := root.NewRootCmd(cmdCtx)
 	cmdMap := cmd.NewCmdFactory(rootCmd)
 
 	// setup hashicorp/cli cli

@@ -1,14 +1,13 @@
 package root
 
 import (
-	"context"
 	"fmt"
 
 	"example.com/go-cli/internal/pkg/cmd"
 )
 
 // Root application command
-func NewRootCmd(ctx context.Context) *cmd.Command {
+func NewRootCmd(ctx *cmd.Context) *cmd.Command {
 	cmd := &cmd.Command{
 		Name:     "root",
 		Synopsis: "<synopsis-placeholder>",
