@@ -13,7 +13,7 @@ import (
 // Responsible for mediating between the two Command{} and cli.Command{} implementations.
 // Also handles validations, flag parsing, etc.
 func (cmd *Command) run(args []string) int {
-	if cmd.Execute == nil {
+	if cmd.Run == nil {
 		// if no Execute method and defined subcommands
 		// tell CLI to render helptext output
 		if len(cmd.subcommands) != 0 {
@@ -38,7 +38,7 @@ func (cmd *Command) run(args []string) int {
 	}
 
 	// Run
-	if err := cmd.Execute(cmd, args); err != nil {
+	if err := cmd.Run(cmd, args); err != nil {
 		// TODO: handle error
 		return 1
 	}

@@ -29,7 +29,7 @@ func newBarCmd(ctx *cmd.Context) *cmd.Command {
 			f.StringVar(&opts.name, "name", "", "Name of the parameter")
 			f.BoolVar(&opts.enabled, "enabled", false, "To enable X setting")
 		},
-		Execute: func(c *cmd.Command, args []string) error {
+		Run: func(c *cmd.Command, args []string) error {
 			fmt.Println("\nExecute: Bar")
 			fmt.Println("--Flags--")
 			fmt.Printf("%+v", opts)

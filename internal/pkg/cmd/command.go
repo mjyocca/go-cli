@@ -11,8 +11,8 @@ type Command struct {
 	HelpText string
 	// Supported aliases as alternative entrypoint
 	Aliases []string
-	// Runs the commands primary logic
-	Execute func(c *Command, args []string) error
+	// Primary execution of the command
+	Run func(c *Command, args []string) error
 	// Receives pointer to private Flagset
 	Flags func(f *flag.FlagSet)
 	// reference to predecessor cmd
