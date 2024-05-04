@@ -4,7 +4,7 @@ import (
 	"context"
 	"os"
 
-	"example.com/go-cli/internal/commands/root"
+	"example.com/go-cli/internal/commands"
 	"example.com/go-cli/internal/pkg/cmd"
 	"example.com/go-cli/version"
 	cli "github.com/hashicorp/cli"
@@ -32,7 +32,7 @@ func realMain() int {
 	}
 
 	// setup root command
-	rootCmd := root.NewRootCmd(cmdCtx)
+	rootCmd := commands.NewCmdRoot(cmdCtx)
 	cmdMap := cmd.NewCmdFactory(rootCmd)
 
 	// setup hashicorp/cli cli

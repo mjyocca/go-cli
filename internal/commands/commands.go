@@ -1,4 +1,4 @@
-package root
+package commands
 
 import (
 	"example.com/go-cli/internal/commands/foo"
@@ -6,7 +6,7 @@ import (
 )
 
 // Root Command. Add top level commands with `cmd.AddCommand(...)`
-func NewRootCmd(ctx *cmd.Context) *cmd.Command {
+func NewCmdRoot(ctx *cmd.Context) *cmd.Command {
 	cmd := &cmd.Command{
 		Name:     "root",
 		Synopsis: "<root::synopsis-placeholder>",
