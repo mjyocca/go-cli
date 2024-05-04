@@ -20,15 +20,15 @@ func newBarCmd(ctx *cmd.Context) *cmd.Command {
 		ctx: ctx.ParentCtx,
 	}
 
-	// Example using stdlib flag package to parse to this cmd option struct{}
-	// TODO: make it easier to include flags with HelpText
-	flag.StringVar(&opts.name, "name", "", "")
-	flag.BoolVar(&opts.enabled, "enabled", false, "")
-
 	cmd := &cmd.Command{
 		Name:     "bar",
 		Synopsis: "<bar::synopsis-placeholder>",
 		HelpText: "<bar::help-text-placeholder>",
+		// TODO: make it easier to include flags with HelpText
+		Flags: func(f *flag.FlagSet) {
+			f.StringVar(&opts.name, "name", "", "Name of the parameter")
+			f.BoolVar(&opts.enabled, "enabled", false, "To enable X setting")
+		},
 		Execute: func(c *cmd.Command, args []string) error {
 			fmt.Println("\nExecute: Bar")
 			fmt.Println("--Flags--")

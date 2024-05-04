@@ -39,11 +39,11 @@ func traverseSubCmds(parentPath string, cmd *Command, factory map[string]cli.Com
 }
 
 // Utility to include parent or super command
-func resolveCmdPath(parent string, current string) string {
-	if parent == "" {
+func resolveCmdPath(prev string, current string) string {
+	if prev == "" {
 		return current
 	}
-	return fmt.Sprintf("%s %s", parent, current)
+	return fmt.Sprintf("%s %s", prev, current)
 }
 
 // Wraps Command{} Adapter implementation
