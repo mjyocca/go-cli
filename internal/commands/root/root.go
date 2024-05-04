@@ -13,6 +13,7 @@ func NewRootCmd(ctx *cmd.Context) *cmd.Command {
 		HelpText: "<root::help-text-placeholder>",
 	}
 
+	// Add top-level subcommand(s)
 	cmd.AddCommand(foo.NewFooCmd(ctx))
 
 	return cmd
