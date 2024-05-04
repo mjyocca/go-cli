@@ -1,7 +1,7 @@
 package version
 
 var (
-	// -ldflags="-X 'main.Version=vX.X.X'"
+	// Linker e.g. -ldflags="-X 'main.Version=vX.X.X'"
 	Version = "1.0.0"
 )
 

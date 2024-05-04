@@ -10,7 +10,10 @@ import (
 	cli "github.com/hashicorp/cli"
 )
 
-var Application = "go-cli"
+var (
+	// Linker e.g. -ldflags="-X 'main.Application=app'"
+	Application = "go-cli"
+)
 
 func main() {
 	os.Exit(realMain())
