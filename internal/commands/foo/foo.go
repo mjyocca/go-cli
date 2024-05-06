@@ -5,8 +5,8 @@ import "example.com/go-cli/internal/pkg/cmd"
 func NewFooCmd(ctx *cmd.Context) *cmd.Command {
 	cmd := &cmd.Command{
 		Name:     "foo",
-		Synopsis: "<foo::synopsis-placeholder>",
-		HelpText: "<foo::help-text-placeholder>",
+		Synopsis: "All things Foo",
+		HelpText: `Command group streamlining all things foo`,
 	}
 
 	cmd.AddCommand(newBarCmd(ctx))

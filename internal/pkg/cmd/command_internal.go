@@ -9,7 +9,7 @@ import (
 	"github.com/hashicorp/cli"
 )
 
-// Invokes Command{} Execute Fn, e.g. `Execute func(c *Command, args []string) error`.
+// Invokes Command{} Run Fn, e.g. `Run func(c *Command, args []string) error`.
 // Responsible for mediating between the two Command{} and cli.Command{} implementations.
 // Also handles validations, flag parsing, etc.
 func (cmd *Command) run(args []string) int {
@@ -24,12 +24,8 @@ func (cmd *Command) run(args []string) int {
 		return 1
 	}
 
-	flagSet := flag.NewFlagSet(cmd.pathName(), flag.ContinueOnError)
-
 	// pass flagset ref to cmd if defined
-	if cmd.Flags != nil {
-		cmd.Flags(flagSet)
-	}
+	flagSet := cmd.flagSet()
 
 	// Parse flags
 	if err := flagSet.Parse(args); err != nil {
@@ -37,8 +33,17 @@ func (cmd *Command) run(args []string) int {
 		return 1
 	}
 
-	// Run
-	if err := cmd.Run(cmd, args); err != nil {
+	// Args after flag parsing
+	parsedArgs := flagSet.Args()
+
+	// handle Args Validations
+	if err := cmd.Arguments.validateFunc()(cmd, parsedArgs); err != nil {
+		fmt.Println(err)
+		return 1
+	}
+
+	// Run the Command
+	if err := cmd.Run(cmd, parsedArgs); err != nil {
 		// TODO: handle error
 		return 1
 	}
@@ -46,13 +51,13 @@ func (cmd *Command) run(args []string) int {
 	return 0
 }
 
-// If command is the root
+// Returns whether command is the root
 func (c *Command) isRootCmd() bool {
 	return c.parent == nil
 }
 
 // Returns full command path to execute the Command.
-func (c *Command) pathName() string {
+func (c *Command) commandPath() string {
 	cmdNames := []string{c.Name}
 	for parent := c.parent; parent != nil; parent = parent.parent {
 		// omit for root cmd
@@ -63,4 +68,19 @@ func (c *Command) pathName() string {
 	slices.Reverse(cmdNames)
 
 	return strings.Join(cmdNames, " ")
+}
+
+// Returns memoized flagset isolated to this command
+func (c *Command) flagSet() *flag.FlagSet {
+	if c.fs != nil {
+		return c.fs
+	}
+	flagSet := flag.NewFlagSet(c.commandPath(), flag.ContinueOnError)
+
+	if c.Flags != nil {
+		c.Flags(flagSet)
+	}
+
+	c.fs = flagSet
+	return c.fs
 }

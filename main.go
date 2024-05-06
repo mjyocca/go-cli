@@ -29,6 +29,7 @@ func realMain() int {
 	// setup cmd package context for global fields
 	cmdCtx := &cmd.Context{
 		ParentCtx: ctx,
+		AppName:   Application,
 	}
 
 	// setup root command
@@ -41,6 +42,7 @@ func realMain() int {
 		Args:     args,
 		Commands: cmdMap,
 		Version:  version.GetVersion(),
+		HelpFunc: cmd.RootHelpFunc(cmdCtx, rootCmd),
 	}
 
 	// execute command

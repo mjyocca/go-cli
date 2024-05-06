@@ -9,8 +9,7 @@ import (
 func NewCmdRoot(ctx *cmd.Context) *cmd.Command {
 	cmd := &cmd.Command{
 		Name:     "root",
-		Synopsis: "<root::synopsis-placeholder>",
-		HelpText: "<root::help-text-placeholder>",
+		HelpText: `CLI Application written in Go/Golang`,
 	}
 
 	// Add top-level subcommand(s)

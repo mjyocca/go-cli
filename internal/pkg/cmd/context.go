@@ -8,4 +8,6 @@ type Context struct {
 	// Parent context that could be configured to handle timeouts
 	// and listen to OS Shutdown signals
 	ParentCtx context.Context
+	// TODO: allow each cmd to access from root
+	AppName string
 }
