@@ -8,7 +8,7 @@ import (
 // Root Command. Add top level commands with `cmd.AddCommand(...)`
 func NewCmdRoot(ctx *cmd.Context) *cmd.Command {
 	cmd := &cmd.Command{
-		Name:     "root",
+		Name:     ctx.AppName,
 		HelpText: `CLI Application written in Go/Golang`,
 	}
 

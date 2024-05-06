@@ -40,3 +40,13 @@ func (c *Command) AddCommand(cmd *Command) {
 func (c *Command) CommandPath() string {
 	return c.commandPath()
 }
+
+func (c *Command) AppName() string {
+	var name string
+	for next := c.parent; next != nil; next = next.parent {
+		if next.isRootCmd() {
+			name = next.Name
+		}
+	}
+	return name
+}

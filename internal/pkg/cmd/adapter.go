@@ -32,6 +32,7 @@ func (c *AdapterCmd) Synopsis() string {
 func (c *AdapterCmd) HelpTemplate() string {
 	flags := c.cmd.flagsUsage()
 	args := c.cmd.argumentsUsage()
+	appName := c.cmd.AppName()
 
 	// TODO: build subcommand template and replace this
 	prepare := `
@@ -42,10 +43,10 @@ Available Commands:
     {{ $value.NameAligned }}    {{ $value.Synopsis }}{{ end }}
 {{- end }}
 %s%s
-Use "<app-name> [command] --help" for more information about a command.
+Use "%s [command] --help" for more information about a command.
 `
-	// TODO: allow each cmd to access appname
-	prepare = fmt.Sprintf(prepare, flags, args)
+
+	prepare = fmt.Sprintf(prepare, flags, args, appName)
 
 	return prepare
 }
