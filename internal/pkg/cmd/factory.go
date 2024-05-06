@@ -26,9 +26,7 @@ func NewCmdFactory(cmd *Command) map[string]cli.CommandFactory {
 func traverseSubCmds(parentPath string, cmd *Command, factory map[string]cli.CommandFactory) {
 	// build alias slice to iterate over
 	aliases := []string{cmd.Name}
-	for _, alias := range cmd.Aliases {
-		aliases = append(aliases, alias)
-	}
+	aliases = append(aliases, cmd.Aliases...)
 
 	// loop over name + aliases to fill factory map
 	for _, name := range aliases {
