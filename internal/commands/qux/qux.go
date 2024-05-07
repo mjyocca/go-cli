@@ -21,13 +21,14 @@ func NewCmdQux(cmdCtx *cmd.Context) *cmd.Command {
 	ch := make(chan struct{})
 
 	return &cmd.Command{
-		Name:     "quz",
+		Name:     "qux",
 		Synopsis: "Synopsis for qux command.",
 		HelpText: "Additional information about qux command",
 		Run: func(c *cmd.Command, args []string) error {
 			go executeWork(ch)
 
 			select {
+			// done processing
 			case res := <-ch:
 				fmt.Println("result chan:", res)
 				return nil
