@@ -2,6 +2,7 @@ package commands
 
 import (
 	"example.com/go-cli/internal/commands/foo"
+	"example.com/go-cli/internal/commands/qux"
 	"example.com/go-cli/internal/pkg/cmd"
 )
 
@@ -14,6 +15,7 @@ func NewCmdRoot(ctx *cmd.Context) *cmd.Command {
 
 	// Add top-level subcommand(s)
 	cmd.AddCommand(foo.NewFooCmd(ctx))
+	cmd.AddCommand(qux.NewCmdQux(ctx))
 
 	return cmd
 }

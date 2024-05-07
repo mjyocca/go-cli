@@ -3,6 +3,8 @@ package main
 import (
 	"context"
 	"os"
+	"os/signal"
+	"syscall"
 
 	"example.com/go-cli/internal/commands"
 	"example.com/go-cli/internal/pkg/cmd"
@@ -22,9 +24,9 @@ func main() {
 func realMain() int {
 	args := os.Args[1:]
 
-	// setup parent context
-	// TODO: handle os signals manually for cleanup
-	ctx := context.Background()
+	// setup parent context that will get notified of quit signals
+	ctx, stop := signal.NotifyContext(context.Background(), os.Interrupt, syscall.SIGTERM)
+	defer stop()
 
 	// setup cmd package context for global fields
 	cmdCtx := &cmd.Context{
